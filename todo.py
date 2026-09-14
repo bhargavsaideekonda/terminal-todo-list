@@ -1,3 +1,6 @@
+import os
+import json
+
 print("TO-DO LIST")
 
 
@@ -6,9 +9,16 @@ print("2. View tasks")
 print("3. Delete a task")
 print("4. Quit")
 list_b = []
+if os.path.exists("tasks.json"):
+    with open("tasks.json", "r") as f:
+        list_b = json.load(f)
 
 while True:
+   try:
     a = int(input("Choose: "))
+   except ValueError:
+        print("Please enter a valid number.")
+        continue
     if a == 1:
         b = input("Add the task: ")
         list_b.append(b)
